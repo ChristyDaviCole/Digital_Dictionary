@@ -54,11 +54,23 @@ If the word is not found or an error occurs, display a user-friendly error messa
 Ensure that each time a new search is performed, old results or error messages are cleared out before new content is displayed.
 */
 
-const searchBtn = document.getElementById("search-btn");
+/*
+PHASE IV: Refactoring with Async/Await
 
-searchBtn.addEventListener("click", () => {
+Everything should be working now, but let’s refactor the code to use async/await syntax.
 
-    const word = document.getElementById("word-input").value;
+Break apart your .then() calls using await to get the results of asynchronous operations
+
+You may need to wrap your fetch() in an async function and then call that function in your eventHandler callback.
+
+We haven’t directly covered the code necessary for error handling this way yet, so you’ll likely need to remove that logic here and just let the app crash/fail if something goes wrong.
+    
+    *If the response isn’t ok, instead of throwing an error, you can instead display something in the HTML (like “Service Down”) and return from the function before doing anything else.
+*/
+
+async function searchDictionary() {
+
+        const word = document.getElementById("word-input").value;
     
     const resultContainer = document.getElementById("result-container");
 
@@ -72,21 +84,17 @@ searchBtn.addEventListener("click", () => {
 
     resultContainer.innerHTML = "";
 
-    fetch(`https://freedictionaryapi.com/api/v1/entries/en/${word}`)
-
-.then(response => {
+    const response = await fetch(`https://freedictionaryapi.com/api/v1/entries/en/${word}`);
 
     if (!response.ok) {
 
-        throw new Error("Response was not successful");
+        resultContainer.textContent = "Service Down";
+
+        return;
 
     }
 
-    return response.json();
-
-})
-
-.then(data => {
+    const data = await response.json();
 
     const wordHeading = document.createElement("h2");
 
@@ -117,16 +125,13 @@ searchBtn.addEventListener("click", () => {
     }
 
     resultContainer.appendChild(definitionList);
+    
+}
 
-})
+const searchBtn = document.getElementById("search-btn");
 
-.catch(error => {
+searchBtn.addEventListener("click", () => {
 
-    console.error("Error: Could not connect to the dictionary service");
-
-    resultContainer.textContent = "Could not connect to dictionary service.";
-
-});
-
+    searchDictionary();
 
 })

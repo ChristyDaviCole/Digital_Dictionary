@@ -1,4 +1,5 @@
-Phase 1 Journal Prompt: How are you passing data from one then() call to another?
+Phase 1 Journal Prompt: 
+How are you passing data from one then() call to another?
 The first .then() uses 'return' to pass the json data to the second .then(), where it is received as data.
 
 Phase 2 Journal Prompt:
@@ -7,3 +8,6 @@ A promise represents a future result. If the API is down or the URL is wrong, th
 
 Phase 3 Journal Prompt:
 How does using the Fetch API to update only a portion of the page improve the “User Experience” compared to a traditional page reload? It faster and less disruptive to the user experience becuase the entire page doesn't have to reload.
+
+Phase 4 Journal Prompt:
+Do you prefer using then() calls or the async/await syntax here? What is easier for you to read and work through? I preferred async/await becuase it's easier to read and follow. 
