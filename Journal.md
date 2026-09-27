@@ -6,3 +6,4 @@ Explain what a “Promise” actually represents in this code. What happens if t
 A promise represents a future result. If the API is down or the URL is wrong, then the promise can reject. .catch() gives a place  to handle the error with an error message.
 
 Phase 3 Journal Prompt:
+How does using the Fetch API to update only a portion of the page improve the “User Experience” compared to a traditional page reload? It faster and less disruptive to the user experience becuase the entire page doesn't have to reload.
